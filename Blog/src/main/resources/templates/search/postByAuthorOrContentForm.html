@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Blog App</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+<nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" th:href="@{/}" class="brand-logo">Home</a>
+        <ul class="right hide-on-med-and-down">
+            <li><a th:href="@{/post/posts}">Posts</a></li>
+            <li><a th:href="@{/comment/comments}">Comments</a></li>
+            <li><a th:href="@{/search}">Search</a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+            <li><a th:href="@{/post/posts}">Posts</a></li>
+            <li><a th:href="@{/comment/comments}">Comments</a></li>
+            <li><a th:href="@{/search}">Search</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+</nav>
+
+
+
+<div class="container">
+    <div class="section">
+
+        <h4>Search post by Author or Content</h4>
+        <br><br>
+
+
+        <form class="col s12" form method="POST" th:action="@{/search/posts/author-content}" th:object="${post}">
+
+            <div class="input-field col s6">
+                <input id="tags" type="text" th:field="*{authors}">
+                <label for="tags">Search by authors or content:</label>
+            </div>
+
+            <br><br>
+
+            <button class="btn waves-effect waves-light" type="submit" value="Submit" name="action">Search
+                <i class="material-icons right">search</i>
+            </button>
+
+
+        </form>
+
+
+    </div>
+</div>
+
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
+
+</body>
+</html>
