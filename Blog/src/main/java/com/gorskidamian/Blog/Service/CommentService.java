@@ -6,9 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @Service
 @ImportResource({"classpath:Comments.xml"})
@@ -104,6 +102,26 @@ public class CommentService implements CommentManager {
         }
 
         return userComments;
+    }
+
+    @Override
+    public HashMap<String, Integer> getUserStatistics() {
+        HashMap<String, Integer> userStats = new LinkedHashMap<>();
+
+        List<String> allUsers = new LinkedList<>();
+
+        for (Comment comment : comments){
+            allUsers.add(comment.getUsername());
+        }
+
+
+        for (int i=0; i<allUsers.size(); i++){
+            int count = userStats.containsKey(allUsers.get(i)) ? userStats.get(allUsers.get(i)) : 0;
+            userStats.put(allUsers.get(i), count+1);
+        }
+
+
+        return userStats;
     }
 
 

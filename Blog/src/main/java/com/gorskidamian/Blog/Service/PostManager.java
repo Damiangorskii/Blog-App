@@ -3,6 +3,7 @@ package com.gorskidamian.Blog.Service;
 import com.gorskidamian.Blog.Models.Comment;
 import com.gorskidamian.Blog.Models.Post;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -21,5 +22,9 @@ public interface PostManager {
     List<Post> getPostsByTags(String tag);
 
     List<Post> getPostsByAuthorsOrContent(String userInput);
+
+    List<Post> getPostsByFirstAuthor(String userInput);
+
+    HashMap<String, Integer> getAuthorStatistics();
 
 }

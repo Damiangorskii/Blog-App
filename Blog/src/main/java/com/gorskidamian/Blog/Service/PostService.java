@@ -3,14 +3,13 @@ package com.gorskidamian.Blog.Service;
 
 import com.gorskidamian.Blog.Models.Comment;
 import com.gorskidamian.Blog.Models.Post;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @Service
 @ImportResource({"classpath:ManyPostsManyAuthors.xml"})
@@ -105,6 +104,57 @@ public class PostService implements PostManager {
         }
 
         return postsAuthorsOrContent;
+    }
+
+    @Override
+    public List<Post> getPostsByFirstAuthor(String userInput) {
+        List<Post> postsFirstAuthor = new LinkedList<>();
+
+
+        for (Post post : posts){
+            if (post.getAuthors().substring(0, post.getAuthors().indexOf(',')+1).contains(userInput)){
+                String firstAuthor = post.getAuthors().substring(0, post.getAuthors().indexOf(','));
+                System.out.println(firstAuthor);
+                postsFirstAuthor.add(post);
+            }
+        }
+        if (postsFirstAuthor.isEmpty()){
+            return null;
+        }
+
+        return postsFirstAuthor;
+    }
+
+    @Override
+    public HashMap<String, Integer> getAuthorStatistics() {
+        HashMap<String, Integer> authorStats = new LinkedHashMap<>();
+
+        List<String> allAuthors = new LinkedList<>();
+
+        for (Post post : posts){
+            String text = post.getAuthors();
+            int N = StringUtils.countMatches(text, " ");
+            String authorTemp = "";
+
+            for(int j = 0; j < N; j++) {
+                if (!text.contains(",")){
+                    allAuthors.add(text);
+                    break;
+                }
+                authorTemp = text.substring(0, text.indexOf(','));
+                text = text.substring(text.indexOf(',')+2);
+                allAuthors.add(authorTemp);
+            }
+        }
+
+
+        for (int i=0; i<allAuthors.size(); i++){
+            int count = authorStats.containsKey(allAuthors.get(i)) ? authorStats.get(allAuthors.get(i)) : 0;
+            authorStats.put(allAuthors.get(i), count+1);
+        }
+
+
+        return authorStats;
     }
 
 

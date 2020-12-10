@@ -36,15 +36,15 @@
 <div class="container">
     <div class="section">
 
-        <h4>Search user's comments by username</h4>
+        <h4>Search post by first Author</h4>
         <br><br>
 
 
-        <form class="col s12" form method="POST" th:action="@{/search/comments/}" th:object="${comment}">
+        <form class="col s12" form method="POST" th:action="@{/search/posts/first-author}" th:object="${post}">
 
             <div class="input-field col s6">
-                <input id="username" type="text" th:field="*{username}">
-                <label for="username">Search by username:</label>
+                <input id="tags" type="text" th:field="*{authors}">
+                <label for="tags">Search by first author:</label>
             </div>
 
             <br><br>

@@ -73,5 +73,18 @@ public class SearchController {
         return "search/postByAuthorOrContentResults";
     }
 
+    @GetMapping("/search/posts/first-author")
+    public String searchPostsByFirstAuthor(Model model){
+        model.addAttribute("post", new Post());
+        return "search/postByFirstAuthorForm";
+    }
+
+    @PostMapping("/search/posts/first-author")
+    public String searchedPostsByFirstAuthor(Model model, Post post){
+        model.addAttribute("posts", ps.getPostsByFirstAuthor(post.getAuthors()));
+        model.addAttribute("userInput", post.getAuthors());
+        return "search/postByFirstAuthorResults";
+    }
+
 
 }
