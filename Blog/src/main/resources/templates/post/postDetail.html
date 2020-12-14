@@ -48,7 +48,7 @@
                             Tags: <span th:text="${postDetail.getTags()}"></span>
                         </div>
                         <div class="card-action">
-                            <a th:href="@{/post/delete/{id}(id=${postDetail.getId()})}">Delete</a>
+                            <a onclick="return confirm('Are you sure you want to delete this post?')" th:href="@{/post/delete/{id}(id=${postDetail.getId()})}">Delete</a>
                             <a th:href="@{/post/edit/{id}(id=${postDetail.getId()})}">Edit</a>
                             <a class="right-align" th:href="@{/comment/create/{postId}(postId=${postDetail.getId()})}">Comment</a>
                         </div>
@@ -68,7 +68,7 @@
                                 <p th:text="${comment.commentContent}"></p>
                             </div>
                             <div class="card-action">
-                                <a th:href="@{/comment/delete/{id}(id=${comment.getId()})}">Delete</a>
+                                <a onclick="return confirm('Are you sure you want to delete this comment?')" th:href="@{/comment/delete/{postId}/{id}(id=${comment.getId()}, postId=${comment.getIdPost()})}">Delete</a>
                                 <a th:href="@{/comment/edit/{id}(id=${comment.getId()})}">Edit</a>
                             </div>
                         </div>

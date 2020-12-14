@@ -21,7 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 public class ParserPost {
     public void parse() throws IOException {
 
-        String fileName = "C:\\Users\\user\\Desktop\\UG\\SEM5\\Technologie Java EE\\Projekt Blog\\Blog\\src\\main\\resources\\ManyPostsManyAuthors.csv";
+        String fileName = "src/main/resources/ManyPostsManyAuthors.csv";
         Path myPath = Paths.get(fileName);
         try (BufferedReader br = Files.newBufferedReader(myPath,
                 StandardCharsets.UTF_8)) {
@@ -47,12 +47,8 @@ public class ParserPost {
 
             }
 
-            for (Post x : posts){
-                System.out.println(x);
-            }
 
-
-            String output = "C:\\Users\\user\\Desktop\\UG\\SEM5\\Technologie Java EE\\Projekt Blog\\Blog\\src\\main\\resources\\ManyPostsManyAuthors.xml";
+            String output = "src/main/resources/ManyPostsManyAuthors.xml";
 
             File newFile = new File(output);
             Files.deleteIfExists(newFile.toPath());
@@ -112,7 +108,6 @@ public class ParserPost {
                     authors = authors + ", ";
                 }
                 text = text.substring(text.indexOf('}') + 1);
-                System.out.println(authors);
             }
 
         return authors;

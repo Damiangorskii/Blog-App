@@ -14,6 +14,8 @@ public interface CommentManager {
 
     void deleteComment(String id);
 
+    void deletePostComment(String id);
+
     Comment getCommentById(String id);
 
     List<Comment> getPostComments(String id);
@@ -23,5 +25,7 @@ public interface CommentManager {
     List<Comment> getUserComments(String username);
 
     HashMap<String, Integer> getUserStatistics();
+
+    List<String> getPostCommentsId(String id);
 
 }

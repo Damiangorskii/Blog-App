@@ -49,6 +49,21 @@ public class CommentService implements CommentManager {
         }
     }
 
+    @Override
+    public void deletePostComment(String id) {
+        List<Comment> commentsToRemove = new LinkedList<>();
+        for (Comment comment: comments){
+            if (comment.getIdPost().equals(id)){
+                commentsToRemove.add(comment);
+            }
+        }
+        if (!commentsToRemove.isEmpty()){
+            for (Comment comment : commentsToRemove){
+                comments.remove(comment);
+            }
+        }
+    }
+
 
     @Override
     public Comment getCommentById(String id) {
@@ -122,6 +137,20 @@ public class CommentService implements CommentManager {
 
 
         return userStats;
+    }
+
+    @Override
+    public List<String> getPostCommentsId(String id) {
+        List<String> postCommentsIds = new LinkedList<>();
+        for (Comment comment : comments){
+            if (comment.getIdPost().equals(id)){
+                postCommentsIds.add(comment.getId());
+            }
+        }
+        if (!postCommentsIds.isEmpty()){
+            return postCommentsIds;
+        }
+        return null;
     }
 
 

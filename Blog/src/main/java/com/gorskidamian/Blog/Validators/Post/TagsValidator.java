@@ -14,7 +14,7 @@ public class TagsValidator implements ConstraintValidator<Tags, String> {
 
         final String regex = "^[\\D]+(([',. -][A-Z ])?[a-zA-Z]*)*$";
 
-        return tags.matches(regex) && tags!=null && tags.length()<=200;
+        return tags.matches(regex) && tags.length()>=2 && tags.length()<=200;
 
     }
 

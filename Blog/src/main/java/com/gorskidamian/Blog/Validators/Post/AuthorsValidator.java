@@ -12,7 +12,7 @@ public class AuthorsValidator implements ConstraintValidator<Authors, String> {
     @Override
     public boolean isValid(String authors, ConstraintValidatorContext constraintValidatorContext) {
 
-        final String regex = "^[A-Z]+(([',. -][A-Z ])?[a-zA-Z]*)*$";
+        final String regex = "([A-Z][a-z]+[ ][A-Z][a-z]+[,]?[ ]?)+";
 
         return authors.matches(regex) && authors!=null;
 

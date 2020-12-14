@@ -1,19 +1,18 @@
 package com.gorskidamian.Blog.Service;
 
 
-import com.gorskidamian.Blog.Models.Comment;
 import com.gorskidamian.Blog.Models.Post;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
 import java.util.*;
 
 @Service
 @ImportResource({"classpath:ManyPostsManyAuthors.xml"})
 public class PostService implements PostManager {
+
 
     List<Post> posts;
 
@@ -156,6 +155,4 @@ public class PostService implements PostManager {
 
         return authorStats;
     }
-
-
 }

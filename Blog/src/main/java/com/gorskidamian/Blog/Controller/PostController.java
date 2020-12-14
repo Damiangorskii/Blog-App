@@ -51,6 +51,7 @@ public class PostController {
     @GetMapping("/post/delete/{id}")
     public String deletePost(@PathVariable String id){
         ps.deletePost(id);
+        cs.deletePostComment(id);
 
         return "redirect:/post/posts";
     }

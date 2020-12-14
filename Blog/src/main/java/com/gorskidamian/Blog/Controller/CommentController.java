@@ -49,6 +49,13 @@ public class CommentController {
         return "redirect:/comment/comments";
     }
 
+    @GetMapping("/comment/delete/{postId}/{id}")
+    public String deletePostComment(@PathVariable String id, @PathVariable String postId){
+        cs.deleteComment(id);
+
+        return "redirect:/post/detail/{postId}";
+    }
+
     @GetMapping("/comment/edit/{id}")
     public String commentEdit(Model model, @PathVariable String id) throws ParseException{
         model.addAttribute("comment", cs.getCommentById(id));

@@ -16,9 +16,11 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class ParserComment {
+
+
     public void parse() throws IOException {
 
-        String fileName = "C:\\Users\\user\\Desktop\\UG\\SEM5\\Technologie Java EE\\Projekt Blog\\Blog\\src\\main\\resources\\Comments.csv";
+        String fileName = "src/main/resources/Comments.csv";
         Path myPath = Paths.get(fileName);
         try (BufferedReader br = Files.newBufferedReader(myPath,
                 StandardCharsets.UTF_8)) {
@@ -35,7 +37,7 @@ public class ParserComment {
 
             List<Comment> comments = csvToBean.parse();
 
-            String output = "C:\\Users\\user\\Desktop\\UG\\SEM5\\Technologie Java EE\\Projekt Blog\\Blog\\src\\main\\resources\\Comments.xml";
+            String output = "src/main/resources/Comments.csv";
 
             File newFile = new File(output);
             Files.deleteIfExists(newFile.toPath());
@@ -66,7 +68,6 @@ public class ParserComment {
                         "    </bean>\n";
 
                 bufferedWriter.write(xml);
-                System.out.println(comments.get(i).toString());
             }
 
 
